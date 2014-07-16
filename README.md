@@ -12,7 +12,10 @@ scala version: 2.10
 
 参考资料：
 1. Scala Style Guide
+
 2. Programming in Scala, Martin Odersky
+
 3. Scala Cookbook, Alvin Alexander
+
 4. Effective Scala, Twitter
 
