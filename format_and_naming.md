@@ -49,4 +49,4 @@ B, C, D      用于第2、第3、第4等类型。例如：
                  }
  N           代表数值类型
 
-注意：在Java中，通常以K、V代表Map的key与value，但是在Scala中，更倾向于使用A、B代表Map的key与value。
+**注意：**在Java中，通常以K、V代表Map的key与value，但是在Scala中，更倾向于使用A、B代表Map的key与value。

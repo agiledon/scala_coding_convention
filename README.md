@@ -1,4 +1,4 @@
-scala version: 2.10  作者：张逸
+scala version: 2.10  编者：张逸
 
 **目录**
 
