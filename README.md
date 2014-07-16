@@ -15,3 +15,4 @@ scala version: 2.10
 2. Programming in Scala, Martin Odersky
 3. Scala Cookbook, Alvin Alexander
 4. Effective Scala, Twitter
+
