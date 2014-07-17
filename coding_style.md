@@ -44,7 +44,20 @@ object CopyBytes extends App {
 } 
 ```
 
-方法的返回值也要避免返回Null。应考虑返回Option，或者Either。
+方法的返回值也要避免返回Null。应考虑返回Option，Either，或者Try。例如：
+```scala
+import scala.util.{Try, Success, Failure} 
+
+def readTextFile(filename: String): Try[List[String]] = { 
+    Try(io.Source.fromFile(filename).getLines.toList
+)
+
+val filename = "/etc/passwd" 
+readTextFile(filename) match {
+    case Success(lines) => lines.foreach(println)
+    case Failure(f) => println(f) 
+}
+```
 
 3）若在Class中需要定义常量，应将其定义为val，并将其放在该类的伴生对象中：
 ```scala

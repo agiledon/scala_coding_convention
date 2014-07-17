@@ -110,3 +110,51 @@ def maxOfList[T](elements: List[T])
 def maxOfListPoorStyle[T](elements: List[T])
         (implicit orderer: (T, T) => Boolean): T
 ```
+
+8) 对于异常的处理，Scala除了提供Java风格的try...catch...finally之外，还提供了allCatch.opt、Try…Success…Failure以及Either…Right…Left等风格的处理方式。其中，Try是2.10提供的语法。根据不同的场景选择不同风格：
+
+* 优先选择Try风格。Try很好地支持模式匹配，它兼具Option与Either的特点，因而既提供了集合的语义，又支持模式匹配，又提供了getOrElse()方法。同时，它还可以组合多个Try，并支持运用for combination。例如：
+``` scala
+val z = for {
+    a <- Try(x.toInt) 
+    b <- Try(y.toInt)
+} yield a * b
+val answer = z.getOrElse(0) * 2
+```
+
+* 如果希望清楚的表现非此即彼的特性，应考虑使用Either。注意，约定成俗下，我们习惯将正确的结果放在Either的右边（Right既表示右边，又表示正确）
+
+* 如果希望将异常情况处理为None，则应考虑使用allCatch.opt。例如：
+```scala
+import scala.util.control.Exception._
+
+def readTextFile(f: String): Option[List[String]] =     
+    allCatch.opt(Source.fromFile(f).getLines.toList)
+```
+
+* 如果希望在执行后释放资源，从而需要使用finally时，考虑try…catch...finally，或者结合try...catch...finally与Either。例如：
+```scala
+  private def executeQuery(conn: Connection, sql: String): Either[SQLException, ResultSet] = {
+    var stmt: Statement = null
+    var rs: ResultSet = null
+    try {
+      stmt = conn.createStatement()
+      rs = stmt.executeQuery(sql)
+      Right(rs)
+    } catch {
+      case e: SQLException => {
+        e.printStackTrace()
+        Left(e)
+      }
+    } finally {
+      try {
+        if (rs != null) rs.close()
+        if (stmt != null) stmt.close()
+      } catch {
+        case e: SQLException => e.printStackTrace()
+      }
+    }
+  }
+```
+
+为避免重复，还应考虑引入Load Pattern。 
