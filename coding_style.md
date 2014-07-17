@@ -44,6 +44,8 @@ object CopyBytes extends App {
 } 
 ```
 
+方法的返回值也要避免返回Null。应考虑返回Option，或者Either。
+
 3）若在Class中需要定义常量，应将其定义为val，并将其放在该类的伴生对象中：
 ```scala
 class Pizza (var crustSize: Int, var crustType: String) {
