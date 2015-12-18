@@ -8,7 +8,7 @@ scala version: 2.10  编者：张逸
 
 [3. 编码风格](https://github.com/agiledon/scala_coding_convention/blob/master/coding_style.md)
 
-[4. 高效编码](https://github.com/agiledon/scala_coding_convention/blob/master/effective_coding.md)
+[4. 高效编码](https://github.com/XD-DENG/scala_coding_convention/blob/patch-1/effective_coding.md)
 
 [5. 编码模式](https://github.com/agiledon/scala_coding_convention/blob/master/coding_patterns.md)
 
